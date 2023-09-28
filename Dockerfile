@@ -11,14 +11,15 @@ RUN { \
     echo 'CustomLog /var/log/apache2/access.log combined'; \
     } >> /etc/apache2/apache2.conf
 
-# Set up custom Directory configurations and DirectoryIndex
-RUN { \
+# Modify docker-php.conf and Set up custom Directory configurations and DirectoryIndex
+RUN sed -i '/DirectoryIndex disabled/d' /etc/apache2/conf-available/docker-php.conf && \
+    { \
     echo '<Directory "/var/www/html/">'; \
     echo '    AllowOverride All'; \
-    echo '    Options Indexes FollowSymLinks'; \
+    echo '    Options -Indexes +FollowSymLinks'; \
     echo '    Require all granted'; \
+    echo '    DirectoryIndex index.php index.html'; \
     echo '</Directory>'; \
-    echo 'DirectoryIndex index.php'; \
     } >> /etc/apache2/sites-available/000-default.conf 
 
 # Copy the PHP file to the web root
