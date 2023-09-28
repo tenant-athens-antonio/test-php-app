@@ -22,8 +22,5 @@ RUN { \
     } > /etc/apache2/conf-available/custom-config.conf && \
     a2enconf custom-config
 
-# If there is any need for other .conf files, enable them here
-RUN a2enconf htaccess
-
 # Copy the PHP file to the web root
 COPY index.php /var/www/html/
