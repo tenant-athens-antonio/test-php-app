@@ -11,7 +11,7 @@ RUN { \
     echo 'CustomLog /var/log/apache2/access.log combined'; \
     } >> /etc/apache2/apache2.conf
 
-# Set up custom Directory configurations
+# Set up custom Directory configurations and DirectoryIndex
 RUN { \
     echo '<Directory "/var/www/html/">'; \
     echo '    AllowOverride All'; \
@@ -19,8 +19,7 @@ RUN { \
     echo '    Require all granted'; \
     echo '</Directory>'; \
     echo 'DirectoryIndex index.php'; \
-    } > /etc/apache2/conf-available/custom-config.conf && \
-    a2enconf custom-config
+    } >> /etc/apache2/sites-available/000-default.conf 
 
 # Copy the PHP file to the web root
 COPY index.php /var/www/html/
