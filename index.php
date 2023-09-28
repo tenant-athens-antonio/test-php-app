@@ -1,4 +1,17 @@
-<?php require_once 'process.php'; ?>
+<?php 
+require_once 'process.php'; 
+
+function writeLog($message) {
+    $formattedMessage = date('Y-m-d H:i:s') . ' - ' . $message;
+    error_log($formattedMessage, 4);
+}
+
+// Log the incoming request
+writeLog("Incoming request: " . $_SERVER['REQUEST_METHOD'] . " " . $_SERVER['REQUEST_URI']);
+$headers = getallheaders();
+writeLog("Headers: " . json_encode($headers));
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
