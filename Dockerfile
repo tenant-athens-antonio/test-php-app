@@ -13,5 +13,3 @@ RUN echo '<Directory "/var/www/html/">\n\
 # Copy the PHP file to the web root
 COPY index.php /var/www/html/
 
-# Expose port 80
-EXPOSE 80
