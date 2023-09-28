@@ -23,3 +23,6 @@ RUN { \
 
 # Copy the PHP file to the web root
 COPY index.php /var/www/html/
+
+# Test HTML Page
+COPY index.html /var/www/html/
