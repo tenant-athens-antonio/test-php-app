@@ -18,7 +18,7 @@ RUN { \
     echo '    Options Indexes FollowSymLinks'; \
     echo '    Require all granted'; \
     echo '</Directory>'; \
-    echo 'DirectoryIndex index.php index.html'; \
+    echo 'DirectoryIndex index.php'; \
     } > /etc/apache2/conf-available/custom-config.conf && \
     a2enconf custom-config
 
