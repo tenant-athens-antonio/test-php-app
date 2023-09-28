@@ -6,6 +6,8 @@ RUN a2enmod rewrite
 # Custom LogLevel for 404 errors
 RUN echo 'LogLevel warn mod_rewrite.c:trace3' >> /etc/apache2/apache2.conf
 
+RUN echo 'ErrorLog /var/log/apache2/error.log' >> /etc/apache2/apache2.conf && \
+    echo 'CustomLog /var/log/apache2/access.log combined' >> /etc/apache2/apache2.conf
 
 # Specify DirectoryIndex in Apache Configuration
 RUN echo '<Directory "/var/www/html/">\n\
