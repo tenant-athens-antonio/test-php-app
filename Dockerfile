@@ -25,7 +25,8 @@ RUN sed -i '/DirectoryIndex disabled/d' /etc/apache2/conf-available/docker-php.c
 # Copy the PHP file to the web root
 COPY index.php /var/www/html/
 
-# Copy the .htaccess file to the web root
-RUN echo 'DirectoryIndex index.php index.html' > /var/www/html/.htaccess
+# Copy the .htaccess file with redirection to the web root
+COPY .htaccess /var/www/html/
 
-# COPY index.html /var/www/html/
+# Restart Apache to ensure configurations are loaded
+RUN service apache2 restart
